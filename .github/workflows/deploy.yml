@@ -35,6 +35,8 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
 
     steps:
       - name: Set tag name
