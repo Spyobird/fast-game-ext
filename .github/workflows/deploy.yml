@@ -58,18 +58,18 @@ jobs:
         with:
           name: production-files
           path: ./dist
-      - name: Archive release
+      - name: Archive Release
         uses: thedoctor0/zip-release@0.7.5
         with:
           type: 'zip'
           path: ./dist
           filename: 'release.zip'
           exclusions: '*.git* /*node_modules/* .editorconfig'
-      - name: Upload Built Ruby
+      - name: Upload Archive
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        run: gh release upload 'release.zip'
+        run: gh release upload "${{ needs.release.outputs.tag }}" 'release.zip'
       - name: Publish Release
         env:
           GH_TOKEN: ${{ github.token }}
