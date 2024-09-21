@@ -1,50 +1,19 @@
-# React + TypeScript + Vite
+# Fast Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple chrome extension that speeds up your YouTube vidoes.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+If you trust me enough that I am not injecting malware into your browser, you can try out this plugin in your own browser!
 
-## Expanding the ESLint configuration
+**Download plugin from the releases page**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Navigate to the [releases](https://github.com/Spyobird/fast-game-ext/releases) page (on the right sidebar). You can choose any release, but I would recommend the latest one. Download the file labelled `releases.zip` by clicking on it. When you have dowloaded the file, you can unarchive it to get the contents inside. You should see there is a folder labelled `dist`.
 
-- Configure the top-level `parserOptions` property like this:
+**Leading the Chrome extension**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Open up Google Chrome, and navigate to `Settings > Extensions > Manage Extensions`. This should bring you to the extensions page. There is a toggle switch labelled as `Developer mode`, ensure that it is enabled. You will notice that a few buttons emerge. Click on `Load unpacked` and subsequently select the `dist` folder that was previously extracted. You should then see the `fast game` extension loaded.
+ 
+## Using the extension
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Open up any video on [YouTube](https://www.youtube.com). Open up the `fast game` extension from the toolbar. Click on button to get zoomies. Win.
