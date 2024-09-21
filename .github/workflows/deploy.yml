@@ -37,6 +37,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set tag name
+        id: tag
+        run: |
+          if [[ "${{ github.event_name }}" != "push" ]]; then
+            tag=v$(date +%Y%m%d.%H%M%S)
+          else
+            tag=$(basename "${{ github.ref }}")
+          fi
+          echo "tag=$tag" >> $GITHUB_OUTPUT
+      - name: Create Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          tag="${{ steps.tag.outputs.tag }}"
+          gh release create --draft "$tag" --title "$tag"
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
@@ -49,27 +65,16 @@ jobs:
           path: ./dist
           filename: 'release.zip'
           exclusions: '*.git* /*node_modules/* .editorconfig'
-      - name: Create Draft Release
-        id: create_release
-        uses: actions/create-release@v1
+      - name: Upload Built Ruby
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release upload 'release.zip'
+      - name: Publish Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release edit "${{ needs.release.outputs.tag }}" --draft=false
+      - uses: eregon/keep-last-n-releases@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v0.1.0
-          release_name: release
-          draft: true
-          prerelease: false
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release.zip
-          asset_name: release.zip
-          asset_content_type: application/zip
-  
-      - uses: eregon/publish-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          release_id: ${{ steps.create_release.outputs.id }}
