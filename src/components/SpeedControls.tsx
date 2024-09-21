@@ -44,7 +44,6 @@ function SpeedControls() {
   return (
     <div>
       <SpeedLabel speed={speed} />
-      {/* <SpeedSlider speed={speed} setSpeed={setSpeed}/><br/> */}
       <SpeedButton speed={2.5} setSpeed={setSpeed} />
       <SpeedButton speed={3} setSpeed={setSpeed} />
       <SpeedButton speed={3.5} setSpeed={setSpeed} />
