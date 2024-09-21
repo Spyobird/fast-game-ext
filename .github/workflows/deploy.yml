@@ -35,8 +35,6 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    outputs:
-      tag: ${{ steps.tag.outputs.tag }}
 
     steps:
       - name: Set tag name
@@ -71,12 +69,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        run: gh release upload "${{ needs.release.outputs.tag }}" 'release.zip'
+        run: gh release upload "${{ steps.tag.outputs.tag }}" 'release.zip'
       - name: Publish Release
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        run: gh release edit "${{ needs.release.outputs.tag }}" --draft=false
+        run: gh release edit "${{ steps.tag.outputs.tag }}" --draft=false
       - uses: eregon/keep-last-n-releases@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
