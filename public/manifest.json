@@ -1,0 +1,19 @@
+{
+  "name": "fast game",
+  "version": "0.1.0",
+  "description": "adds some zoomies to your youtube videos.",
+  "icons": {
+    "128": "icon-128.png"
+  },
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
+  "manifest_version": 3
+}
