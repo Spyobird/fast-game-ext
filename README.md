@@ -4,7 +4,9 @@ A simple chrome extension that speeds up your YouTube vidoes.
 
 ## Installation
 
-If you trust me enough that I am not injecting malware into your browser, you can try out this plugin in your own browser!
+Try out this plugin in your own browser!
+
+That's if you trust me enough that I am not injecting malware into your browser. Anyways the source code is right here for you to peruse.
 
 **Download plugin from the releases page**
 
